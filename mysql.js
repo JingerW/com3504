@@ -1,5 +1,4 @@
 var mysql = require('mysql');
-
 var connection = mysql.createConnection(
     {
       host     : 'stusql.dcs.shef.ac.uk',
@@ -9,18 +8,32 @@ var connection = mysql.createConnection(
       database : 'team069'
     }
 );
-connection.connect();
-var query = connection.query('SELECT * FROM test');
 
-query.on('error', function(err) {
-    throw err;
-});
+exports.query = function(callback){
+   connection.query('SELECT * FROM test', function(err, rows, fields){
+    if(err){
+      throw err;
+    } else{
+      var content = '';
+      for(var i=0; i<rows.length; i++){
+        content += rows[i].surname+' '+ rows[i].forename+ '\n';
+      }
+    }
+    callback(content);
+  });
+}
 
-query.on('fields', function(fields) {
-    console.log(fields);
-});
 
-query.on('result', function(row) {
-    console.log(row);
-});
-connection.end();
+exports.insert = function(surname, forename){
+  var query_string = 'INSERT INTO test(surname, forename) VALUE(\'' + surname + '\', \'' + forename + '\');';
+  var query = connection.query(query_string);
+  query.on('error', function(err) {
+      throw err;
+  });
+}
+exports.open = function(){
+  connection.connect();
+}
+exports.close = function(){
+  connection.end();
+}
