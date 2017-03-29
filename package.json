@@ -1,15 +1,27 @@
 {
   "name": "football",
   "version": "1.0.0",
-  "description": "",
+  "description": "com3504 assignment",
   "main": "mysql.js",
   "dependencies": {
     "mysql": "^2.13.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Jingjing Wang, Runchu Hu, Bingchen Tao",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JingerW/com3504.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JingerW/com3504/issues"
+  },
+  "homepage": "https://github.com/JingerW/com3504#readme"
 }
